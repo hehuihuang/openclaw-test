@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 面试急救包 - 商务英语面试突击训练
 
-## Getting Started
+基于遗忘曲线的面试英语记忆训练应用。
 
-First, run the development server:
+> "今晚背完，明天面试不翻车"
+
+## 🚀 项目地址
+
+**GitHub**: https://github.com/hehuihuang/openclaw-test
+
+## ✨ 功能特性
+
+- 📚 **3个岗位分类**: 外企通用 / 外贸销售 / 跨境电商
+- 🧠 **遗忘曲线记忆训练**: 科学复习时机（20分钟→1小时→9小时→1天...）
+- 💳 **解锁系统**: 资料查看 + 训练解锁付费模式
+- 📅 **面试提醒**: 设置面试时间，自动提醒复习
+- 📊 **学习统计**: 掌握进度追踪
+
+## 🛠️ 技术栈
+
+- Next.js 16 + TypeScript
+- Tailwind CSS
+- LocalStorage 数据持久化
+- 静态导出（无需后端）
+
+## 📦 本地运行
 
 ```bash
+# 克隆项目
+git clone https://github.com/hehuihuang/openclaw-test.git
+cd openclaw-test
+
+# 安装依赖
+npm install
+
+# 开发模式
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 构建
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+访问 http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 部署到 Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 方式1: Vercel CLI
 
-## Learn More
+```bash
+# 安装 Vercel CLI
+npm i -g vercel
 
-To learn more about Next.js, take a look at the following resources:
+# 部署
+vercel
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 方式2: GitHub 集成
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. 在 [Vercel](https://vercel.com) 注册账号
+2. 导入 GitHub 仓库
+3. 自动部署
 
-## Deploy on Vercel
+## 📁 项目结构
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/
+│   ├── page.tsx              # 首页 - 岗位选择
+│   ├── layout.tsx            # 根布局
+│   ├── globals.css           # 全局样式
+│   ├── unlock/
+│   │   └── page.tsx          # 解锁/支付页面
+│   └── jobs/
+│       └── [slug]/
+│           ├── page.tsx      # 岗位详情 - 题目列表
+│           └── training/
+│               └── page.tsx  # 记忆训练页面
+├── data/
+│   └── questions.ts          # 面试题目数据
+└── lib/
+    └── forgetting-curve.ts   # 遗忘曲线算法
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💰 商业模式
+
+- **资料查看**: 免费预览3题
+- **完整资料**: ¥9.9（早鸟价）
+- **记忆训练解锁**: ¥9.9
+- **解锁码格式**: `IP-2024-XXXX`
+
+## 📝 数据格式
+
+面试题目数据位于 `src/data/questions.ts`：
+
+```typescript
+interface Question {
+  id: string;
+  category: 'self-intro' | 'experience' | 'skills' | 'scenario' | 'vocabulary';
+  question: string;      // 英文问题
+  questionCn: string;    // 中文翻译
+  answer: string;        // 参考答案
+  answerCn: string;      // 中文翻译
+  keywords: string[];    // 关键词
+  difficulty: 1 | 2 | 3; // 难度
+}
+```
+
+## 🔄 遗忘曲线复习间隔
+
+基于艾宾浩斯遗忘曲线：
+
+```
+20分钟 → 1小时 → 9小时 → 1天 → 2天 → 6天 → 31天
+```
+
+## 📱 页面截图
+
+（待补充）
+
+## 🎯 后续优化
+
+- [ ] 接入微信支付
+- [ ] 添加更多岗位
+- [ ] 语音朗读功能
+- [ ] AI 模拟面试
+- [ ] 学习社区
+
+## 📄 License
+
+MIT License
+
+---
+
+**Created with OpenClaw + gstack methodology**
